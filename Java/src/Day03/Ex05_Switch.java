@@ -26,6 +26,7 @@ public class Ex05_Switch {
 				System.out.println("요청하신 채널이 없습니다.");
 				break;
 		}
+		sc.close();
 		
 	}
 }

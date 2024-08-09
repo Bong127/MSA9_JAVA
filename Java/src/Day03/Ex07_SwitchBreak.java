@@ -19,6 +19,6 @@ public class Ex07_SwitchBreak {
 		case 1: System.out.println("*");break;
 		default: System.out.println("**");break;
 		}
-		
+		sc.close();
 	}
 }

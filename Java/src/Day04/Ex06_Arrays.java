@@ -1,6 +1,5 @@
 package Day04;
 
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class Ex06_Arrays {

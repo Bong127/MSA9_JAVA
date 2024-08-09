@@ -1,6 +1,5 @@
 package Day03;
 
-import java.util.Scanner;
 
 public class Ex14_GuguAll {
 	public static void main(String[] args) {

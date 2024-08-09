@@ -21,5 +21,6 @@ public class Ex06_Grade {
 		case "F": System.out.println("60점 미만입니다.");break;
 		default: System.out.println("A~F 사이의 문자를 입력해주세요.");break;
 		}
+		sc.close();
 	}
 }
