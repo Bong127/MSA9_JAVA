@@ -5,7 +5,7 @@ public class StudentTest {
 	public static void main(String[] args) {
 		// Student 객체 생성
 		Student student = new Student();
-		
+		// 수정
 		student.name = "김도현";
 		student.age = 20;
 		student.stdNo = "T10001";
