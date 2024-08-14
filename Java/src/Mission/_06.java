@@ -8,25 +8,30 @@ public class _06 {
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
 		Random random = new Random();
-		int condition = 1;
 		int arr[] = new int[6];
+		int temp;
 		// 게임 개수
 		for (int z = 1; z <= n; z++) {
 			// 랜덤 정수 입력
 			for (int i = 0; i < arr.length; i++) {
 				arr[i] = random.nextInt(44) + 1;
 				// 중복 정수 제거
-				do {
-					for (int j = 0; j < i; j++) {
-						if (arr[j] == arr[i]) {// 중복 발견시 반복문 탈출 및 condition 0으로 변경(while문 탈출 불가)
-							condition = 0;
-							break;
-						} else
-							condition = 1;
+				for (int j = 0; j < i; j++) {
+					if (arr[j] == arr[i]) {
+						i--;
+						break;
 					}
-					if (condition == 0) // 중복 발견시 새로운 정수 입력
-						arr[i] = random.nextInt(44) + 1;
-				} while (condition != 1); // condition이 1인 경우(중복이 발견되지 않은 경우)
+				}
+			}
+			// 오름차순 정렬
+			for (int i = 1; i < arr.length; i++) {
+				for (int j = i; j > 0; j--) {
+					if(arr[j-1] > arr[j]) {
+						temp = arr[j];
+						arr[j] = arr[j-1];
+						arr[j-1] = temp;
+					}
+				}
 			}
 			// 점수 출력
 			System.out.print("[" + z + " 게임]");
