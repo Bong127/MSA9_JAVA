@@ -1,5 +1,5 @@
 package lombok.basic;
-
+@lombok.Builder
 public class Builder {
 
 	public static void main(String[] args) {

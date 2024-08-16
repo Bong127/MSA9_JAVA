@@ -37,9 +37,9 @@ public class _12 {
 				}
 			}
 			// 점수 출력
-			System.out.print("[" + z + " 게임]");
+			System.out.print("[" + z + " 게임] : ");
 			for (Integer integer : list) {
-				System.out.print(integer + " ");
+				System.out.printf("%2d  ", integer);
 			}
 			list.clear();
 			System.out.println();

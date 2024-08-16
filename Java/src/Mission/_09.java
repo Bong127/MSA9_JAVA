@@ -25,13 +25,13 @@ public class _09 {
 		}
 		
 		// 출력
-		System.out.println("성명  출장비  오만원  만원  오천원  천원  오백원  백원  오십원  십원  오원  일원");
+		System.out.println("성명  출장비	오만원	만원	오천원	천원	오백원	백원	오십원	십원	오원	일원");
 		for (int i = 0; i < n; i++) {
 			System.out.print(name[i] + "  " + money[i]);
 			for (int j = 0; j < 10; j++) {
 				sum[j] += money[i] / divide[j];
 				// 해당 화폐 개수 출력
-				System.out.print("    " + money[i] / divide[j]);
+				System.out.printf("	%3d", money[i] / divide[j]);
 				// 남은 돈
 				money[i] %= divide[j];
 			}
@@ -40,7 +40,7 @@ public class _09 {
 		// 전체화폐매수 출력
 		System.out.print("전체화폐매수 :");
 		for (int i = 0; i < 10; i++) {
-			System.out.print("    " + sum[i]);
+			System.out.printf("	%3d", sum[i]);
 		}
 		sc.close();
 	}

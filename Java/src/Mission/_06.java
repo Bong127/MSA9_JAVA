@@ -36,7 +36,7 @@ public class _06 {
 			// 점수 출력
 			System.out.print("[" + z + " 게임]");
 			for (int i = 0; i < arr.length; i++) {
-				System.out.print(arr[i] + " ");
+				System.out.printf("%2d  ", arr[i]);
 			}
 			System.out.println();
 		}
