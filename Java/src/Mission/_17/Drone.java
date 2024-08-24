@@ -3,7 +3,12 @@ package Mission._17;
 public class Drone implements RemoteControl {
 
 	int speed;
+	int battery;
 	
+	public Drone() {
+		this.battery = 100;
+	}
+
 	@Override
 	public void turnOn() {
 		System.out.println("드론 전원 ON");
@@ -12,6 +17,21 @@ public class Drone implements RemoteControl {
 	@Override
 	public void turnOff() {
 		System.out.println("드론 전원 OFF");
+		setBattery(getBattery()-40);
+		if(getBattery()<0)
+			setBattery(0);
+	}
+
+	public int getBattery() {
+		return battery;
+	}
+
+	public void setBattery(int battery) {
+		this.battery = battery;
+	}
+
+	public int getSpeed() {
+		return speed;
 	}
 
 	@Override
@@ -29,5 +49,15 @@ public class Drone implements RemoteControl {
 		}
 		System.out.println("현재 속도 : " + this.speed);
 	}
-	
+	@Override
+	public void changeBatter() {
+		if(getBattery()==0) {
+			setBattery(100);
+			System.out.println("드론의 배터리를 교체하였습니다.");
+			System.out.println("남은 드론의 배터리 " + getBattery() + "%");
+		}
+		else {
+			System.out.println("남은 드론의 배터리 " + getBattery() + "%");
+		}
+	}
 }

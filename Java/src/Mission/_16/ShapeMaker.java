@@ -1,5 +1,6 @@
 package Mission._16;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ShapeMaker {
@@ -12,12 +13,9 @@ public class ShapeMaker {
 		double radius = 0;
 
 		// 입력받은 도형 배열 (3개)
-		Shape[] shapeList = new Shape[3];
-		int index = 0;
+		ArrayList<Shape> shapeList = new ArrayList<Shape>();
 
 		while (true) {
-			if (index == 3)
-				break;
 			System.out.println("1. 삼각형, 2. 사각형, 3. 원형");
 			System.out.print(">>");
 			String input = sc.next(); // next() : String(문자열) 입력
@@ -33,7 +31,7 @@ public class ShapeMaker {
 				width = sc.nextDouble();
 				System.out.print("세로 : ");
 				height = sc.nextDouble();
-				shapeList[index++] = new Triangle(width, height);
+				shapeList.add(new Triangle(width, height));
 				break;
 			// 사각형
 			case "2":
@@ -41,13 +39,13 @@ public class ShapeMaker {
 				width = sc.nextDouble();
 				System.out.print("세로 : ");
 				height = sc.nextDouble();
-				shapeList[index++] = new Rectangle(width, height);
+				shapeList.add(new Rectangle(width, height));
 				break;
 			// 원형
 			case "3":
 				System.out.print("반지름 : ");
 				radius = sc.nextDouble();
-				shapeList[index++] = new Circle(radius);
+				shapeList.add(new Circle(radius));
 				break;
 
 			default:
