@@ -17,7 +17,7 @@ public class Drone implements RemoteControl {
 	@Override
 	public void turnOff() {
 		System.out.println("드론 전원 OFF");
-		setBattery(getBattery()-40);
+		setBattery(getBattery()-(getSpeed()/2));
 		if(getBattery()<0)
 			setBattery(0);
 	}

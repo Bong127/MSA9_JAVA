@@ -19,13 +19,16 @@ public class LottoMethod {
 		int rand;
 		for (int i = 0; i < n; i++) {
 			list[i] = new ArrayList<Integer>();
+			// 자동, 수동 선택
 			System.out.print("["+(i+1)+" 게임] (1.자동 / 2.수동) : ");
 			autoNum = sc.nextInt();
+			// 1,2 외의 숫자를 입력할시 다시 선택
 			if(!(autoNum==1 || autoNum==2)) {
 				System.out.println("1 또는 2를 입력해주세요!");
 				i--;
 				continue;
 			}
+			// 자동 수동 선택 리스트에 추가
 			if(autoNum == 1)
 				auto.add("자 동");
 			else
@@ -114,6 +117,7 @@ public class LottoMethod {
 		
 		// 로또 출력
 		System.out.println("################## 인생역전Lottoria #################");
+		// 날짜 출력
 		System.out.print("발행일	: ");
 		System.out.println(toDayFormat);
 		System.out.print("추첨일	: ");
@@ -123,11 +127,14 @@ public class LottoMethod {
 		System.out.println("---------------------------------------------------");
 		char charNum = 'A';
 		for (int i = 0; i < list.length; i++) {
+			// 시작 알파벳 출력
 			System.out.print(charNum + " ");
 			charNum++;
+			// 자동 여부 출력
 			System.out.print(auto.get(i) + " ");
-			for (int j = 0; j < list[i].size() ; j++)
-				System.out.printf("%2d	", list[i].get(j));
+			// 로또 번호 출력
+			for (Integer lottoList : list[i]) 
+				System.out.printf("%2d	", lottoList);
 			System.out.println();
 		}
 		System.out.println("---------------------------------------------------");
@@ -138,16 +145,14 @@ public class LottoMethod {
 	// 당첨 번호 생성
 	public ArrayList<Integer> lottoNumber() {
 		ArrayList<Integer> winning = new ArrayList<Integer>();
+		int rand;
 		// 중복 방지
 		for (int i = 0; i < 7; i++) {
-			winning.add(random.nextInt(44) + 1);
-			for (int j = 0; j < i; j++) {
-				if (winning.get(j) == winning.get(i)) {
-					winning.remove(i);
-					i--;
-					break;
-				}
-			}
+			rand = random.nextInt(44) + 1;
+			if(winning.contains(rand))
+				i--;
+			else
+				winning.add(rand);
 		}
 		
 		// 오름차순 정렬
@@ -170,15 +175,13 @@ public class LottoMethod {
 		
 		// 당첨 확인
 		for (int i = 0; i < list.length; i++) {
-			for (int j = 0; j < list[i].size(); j++) {
-				for (int j2 = 0; j2 < 7; j2++) {
-					
-					if( list[i].get(j) == winning.get(j2) ) {
-						if(j2 == 6)
-							bonusCount++;
-						else
-							count++;
-					}
+			for (int j = 0; j < 7; j++) {
+				// 당첨 번호 비교
+				if(list[i].contains(winning.get(j))){
+					if(j == 6)
+						bonusCount++;
+					else
+						count++;
 				}
 			}
 			switch (count) { // 당첨 결과 입력
@@ -217,12 +220,16 @@ public class LottoMethod {
 		System.out.println("########################## 당첨 결과 ##########################");
 		char charNum = 'A';
 		for (int i = 0; i < list.length; i++) {
+			// 시작 알파벳 출력
 			System.out.print(charNum + " ");
 			charNum++;
+			// 자동 여부 출력
 			System.out.print(auto.get(i) + " ");
-			for (int j = 0; j < list[i].size() ; j++) {
-				System.out.printf("%2d	", list[i].get(j));
+			// 로또 번호 출력
+			for (Integer lottoList : list[i]) {
+				System.out.printf("%2d	", lottoList);
 			}
+			// 당첨 여부 출력
 			if(result.get(i) == 0)
 				System.out.print("(낙첨)");
 			else

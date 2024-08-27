@@ -12,14 +12,14 @@ public class RcCar implements RemoteControl {
 	@Override
 	public void turnOn() {
 		System.out.println("RC카 전원을 켭니다.");
-		setBattery(getBattery()-40);
-		if(getBattery()<0)
-			setBattery(0);
 	}
 
 	@Override
 	public void turnOff() {
 		System.out.println("RC카 전원을 끕니다.");
+		setBattery(getBattery()-(getSpeed()/2));
+		if(getBattery()<0)
+			setBattery(0);
 	}
 
 	public int getBattery() {
