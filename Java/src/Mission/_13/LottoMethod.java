@@ -3,7 +3,7 @@ package Mission._13;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Locale;
+import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -16,6 +16,7 @@ public class LottoMethod {
 		Scanner sc = new Scanner(System.in);
 		ArrayList<Integer>[] list = new ArrayList[n];
 		int autoNum;
+		int rand;
 		for (int i = 0; i < n; i++) {
 			list[i] = new ArrayList<Integer>();
 			System.out.print("["+(i+1)+" 게임] (1.자동 / 2.수동) : ");
@@ -33,61 +34,36 @@ public class LottoMethod {
 			if(autoNum==1) {
 				// 중복 배제 랜덤 수 입력
 				for (int j = 0; j < 6; j++) {
-					list[i].add(random.nextInt(44) + 1);
-					for (int j2 = 0; j2 < j; j2++) {
-						if (list[i].get(j2) == list[i].get(j)) {
-							list[i].remove(j);
-							j--;
-							break;
-						}
-					}
-				}
-				// 오름차순 정렬
-				for (int j = 1; j < 6; j++) {
-					for (int j2 = j; j2 > 0; j2--) {
-						if( list[i].get(j2-1) > list[i].get(j2)) {
-							temp = list[i].get(j2);
-							list[i].set(j2, list[i].get(j2-1));
-							list[i].set(j2-1, temp);
-						}
-					}
+					rand = random.nextInt(44) + 1;
+					if(list[i].contains(rand))
+						j--;
+					else
+						list[i].add(rand);
 				}
 			// 수동 입력
 			}else {
 				for (int j = 0; j < 6; j++) {
 					System.out.print((j+1) + " : ");
-					list[i].add(sc.nextInt());
+					rand = sc.nextInt();
 					// 숫자 1 ~ 45 아닐 시 재입력
-					if(!(list[i].get(j) <= 45 && list[i].get(j) >= 1)) {
+					if(!(rand <= 45 && rand >= 1)) {
 						System.out.println("숫자 45를 넘었습니다 다시 입력해주세요.");
-						list[i].remove(j);
 						j--;
 						continue;
 					}
 					// 숫자 중복시 재입력
-					for (int j2 = 0; j2 < j; j2++) {
-						if (list[i].get(j2) == list[i].get(j)) {
-							System.out.println("숫자가 중복됩니다 다시 입력해주세요.");
-							list[i].remove(j);
-							j--;
-							break;
-						}
-					}
-				}
-				// 오름차순 정렬
-				for (int j = 1; j < 6; j++) {
-					for (int j2 = j; j2 > 0; j2--) {
-						if( list[i].get(j2-1) > list[i].get(j2)) {
-							temp = list[i].get(j2);
-							list[i].set(j2, list[i].get(j2-1));
-							list[i].set(j2-1, temp);
-						}
-					}
+					if(list[i].contains(rand))
+						j--;
+					else
+						list[i].add(rand);
 				}
 			}
+			// 오름차순 정렬
+			Collections.sort(list[i]);
+			
 			// 정렬된 수 출력
-			for (int j = 0; j < 6; j++) {
-				System.out.print(list[i].get(j) + " ");
+			for (Integer result : list[i]) {
+				System.out.print(result + " ");
 			}
 			System.out.println();
 		}
@@ -99,12 +75,15 @@ public class LottoMethod {
 	public void LottoPrint(Lotto lotto) {
 		ArrayList<Integer>[] list = lotto.getList();
 		ArrayList<String> auto = lotto.getAuto();
+		
 		// 현재 날짜
 		Calendar toDay = Calendar.getInstance();
+		
 		// 이번주 토요일
-		Calendar sDay = Calendar.getInstance();	
-		// 1년뒤 날짜
-		Calendar yearDay = Calendar.getInstance();	
+		Calendar sDay = Calendar.getInstance();
+		
+		// 로또 만료일
+		Calendar yearDay = Calendar.getInstance();
 		
 		// 이번주 토요일 21시 정각으로 설정
 		sDay.set(Calendar.DAY_OF_WEEK, 7);
@@ -116,37 +95,31 @@ public class LottoMethod {
 		if(toDay.after(sDay))
 			sDay.add(Calendar.DATE, 7);
 		
-		// 현재 날짜로부터 1년 뒤
+		// 1년뒤 날짜
+		yearDay.setTime(sDay.getTime());
 		yearDay.add(Calendar.DATE, 366);
 		
 		// 날짜 및 시간 형식
-		SimpleDateFormat formatDay = new SimpleDateFormat("yyyy/MM/dd");
-		SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd일 (E) HH:mm:ss");
+		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy/MM/dd일 (E)");
 		
-		// 현재 날짜, 시간, 요일
-		String toDay_Day = formatDay.format(toDay.getTime());
-		String toDay_Time = formatTime.format(toDay.getTime());
-		String toDay_Week = toDay.getDisplayName(Calendar.DAY_OF_WEEK, 	Calendar.NARROW_FORMAT, Locale.KOREAN);
+		// 현재 날짜 포맷
+		String toDayFormat = sdf.format(toDay.getTime());
 		
-		// 토요일 날짜
-		String sDay_Day = formatDay.format(sDay.getTime());
+		// 토요일 날짜 포맷
+		String sDayFormat = sdf.format(sDay.getTime());
 		
-		// 1년뒤 날짜, 요일
-		String yearDay_Day = formatDay.format(yearDay.getTime());
-		String yearDay_Week = yearDay.getDisplayName(Calendar.DAY_OF_WEEK, 	Calendar.NARROW_FORMAT, Locale.KOREAN);
+		// 1년뒤 날짜 포맷
+		String yearDayFormat = sdf2.format(yearDay.getTime());
 		
 		// 로또 출력
 		System.out.println("################## 인생역전Lottoria #################");
 		System.out.print("발행일	: ");
-		System.out.print(toDay_Day+"일  ");
-		System.out.print("(" + toDay_Week + ")  ");
-		System.out.println(toDay_Time);
+		System.out.println(toDayFormat);
 		System.out.print("추첨일	: ");
-		System.out.println(sDay_Day+"일  (토)  21:00:00");
+		System.out.println(sDayFormat);
 		System.out.print("지급기한	: ");
-		System.out.print(yearDay_Day+"일  ");
-		System.out.print("(" + yearDay_Week + ")	");
-		System.out.println();
+		System.out.println(yearDayFormat);
 		System.out.println("---------------------------------------------------");
 		char charNum = 'A';
 		for (int i = 0; i < list.length; i++) {
@@ -162,7 +135,7 @@ public class LottoMethod {
 		System.out.println("###################################################");
 	}
 	
-	// 당첨 번호
+	// 당첨 번호 생성
 	public ArrayList<Integer> lottoNumber() {
 		ArrayList<Integer> winning = new ArrayList<Integer>();
 		// 중복 방지
@@ -178,15 +151,8 @@ public class LottoMethod {
 		}
 		
 		// 오름차순 정렬
-		for (int i = 1; i < 7; i++) {
-			for (int j = i; j > 0; j--) {
-				if( winning.get(j-1) > winning.get(j)) {
-					temp = winning.get(j);
-					winning.set(j, winning.get(j-1));
-					winning.set(j-1, temp);
-				}
-			}
-		}
+		Collections.sort(winning);
+		
 		return winning;
 	}
 	

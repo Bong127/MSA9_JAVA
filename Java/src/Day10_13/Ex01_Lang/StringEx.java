@@ -1,4 +1,4 @@
-package Day10.Ex01_Lang;
+package Day10_13.Ex01_Lang;
 
 import java.util.Scanner;
 
