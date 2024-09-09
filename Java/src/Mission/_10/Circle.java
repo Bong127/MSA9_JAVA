@@ -11,8 +11,8 @@ public class Circle {
 		this.radius = radius;
 	}
 	
-	public double getArea() {
-		return Math.PI * Math.pow(radius, 2);
+	public String getArea() {
+		return String.format("%.10f", Math.PI * Math.pow(radius, 2));
 	}
 
 	@Override

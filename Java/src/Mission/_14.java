@@ -8,17 +8,30 @@ import java.io.IOException;
 public class _14 {
 	public static void main(String[] args){
 		String line;
-		String arr[];
+		String arr[][] = new String[10][4];
+		String temp[] = new String[4];
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("C:\\MSA9\\student.txt"));
-			System.out.println("번호		이름		성적		반");
-			while(true) {
-				line = br.readLine();
-				if(line == null)
-					break;
-				arr = line.split("/");
+			System.out.println("번호	이름	성적	반");
 				for (int i = 0; i < arr.length; i++) {
-					System.out.print(arr[i] + "		");
+					line = br.readLine();
+					if(line == null)
+						break;
+					arr[i] = line.split("/");
+				}
+			for (int i = 0; i < arr.length-1; i++) {
+				for (int j = 0; j < arr.length-1; j++) {
+					if(Integer.parseInt(arr[j][2]) < Integer.parseInt(arr[j+1][2]))
+					{
+						temp = arr[j];
+						arr[j] = arr[j+1];
+						arr[j+1] = temp;
+					}
+				}
+			}
+			for (String[] list : arr) {
+				for (String i : list) {
+				System.out.print(i+"	");
 				}
 				System.out.println();
 			}

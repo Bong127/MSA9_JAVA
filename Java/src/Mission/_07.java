@@ -14,7 +14,7 @@ public class _07 {
 		}
 		
 		// 오름차순
-		for (int i = 0; i < a.length; i++) {
+		for (int i = 0; i < a.length-1; i++) {
 			for (int j = 0; j < a.length-1; j++) {
 				if(a[j] > a[j+1])
 				{

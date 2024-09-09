@@ -8,11 +8,8 @@ public class _01 {
 		int eng,math,java;
 		
 		// 점수 입력
-		System.out.print("영어 점수를 입력해주세요 : ");
 		eng = sc.nextInt();
-		System.out.print("수학 점수를 입력해주세요 : ");
 		math = sc.nextInt();
-		System.out.print("자바 점수를 입력해주세요 : ");
 		java = sc.nextInt();
 		
 		// 점수 출력

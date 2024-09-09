@@ -9,7 +9,7 @@ public class FigureTest {
 		
 		System.out.println("삼각형의 넓이 : " + triangle.getArea());
 		System.out.println("사각형의 넓이 : " + rectangle.getArea());
-		System.out.println("원의 넓이 : " + circle.getArea());
+		System.out.println("원형의 넓이 : " + circle.getArea());
 		System.out.println("사다리꼴의 넓이 : " + trapezoid.getArea());
 	}
 }

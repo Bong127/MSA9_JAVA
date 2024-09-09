@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class _06 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
+		System.out.print("몇 게임? ");
 		int n = sc.nextInt();
 		Random random = new Random();
 		int arr[] = new int[6];

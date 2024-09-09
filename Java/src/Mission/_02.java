@@ -7,7 +7,6 @@ public class _02 {
 		Scanner sc = new Scanner(System.in);
 		
 		// 숫자 입력
-		System.out.print("숫자를 입력하세요 : ");
 		int n = sc.nextInt();
 		int sum=0;
 		

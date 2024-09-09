@@ -84,7 +84,7 @@ public class Bank {
 							break;
 						}
 						else {
-							System.out.println("비밀번호가 다릅니다.");
+							System.err.println("비밀번호가 다릅니다.");
 							break;
 						}
 					}
@@ -107,7 +107,7 @@ public class Bank {
 							break;
 						}
 						else {
-							System.out.println("비밀번호가 다릅니다.");
+							System.err.println("비밀번호가 다릅니다.");
 							break;
 						}
 					}
