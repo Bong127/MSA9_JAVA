@@ -11,13 +11,6 @@ public class LottoRun {
 		// 당첨 번호 생성
 		lotto.setWinning(lottoMethod.lottoNumber());
 		
-		// 당첨 번호 출력(테스트용)
-		System.out.print("당첨 번호 : ");
-		for (int i = 0; i < 6; i++) {
-			System.out.print(lotto.getWinning().get(i)+" ");
-		}
-		System.out.println();
-		System.out.println("보너스 번호 : " + lotto.getWinning().get(6));
 		
 		// 게임 개수 입력(1 ~ 5 사이로 입력)
 		int n;
