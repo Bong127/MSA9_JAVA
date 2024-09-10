@@ -11,7 +11,7 @@ public class _14 {
 		String arr[][] = new String[10][4];
 		String temp[] = new String[4];
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("C:\\MSA9\\student.txt"));
+			BufferedReader br = new BufferedReader(new FileReader("student.txt"));
 			System.out.println("번호	이름	성적	반");
 				for (int i = 0; i < arr.length; i++) {
 					line = br.readLine();
